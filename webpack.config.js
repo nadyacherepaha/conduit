@@ -3,8 +3,12 @@ const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
+  mode: isDevelopment ? 'development' : 'production',
   entry: './src/main.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -18,6 +22,7 @@ module.exports = {
     compress: true,
     port: 3000,
     open: true,
+    hot: true,
   },
   module: {
     rules: [

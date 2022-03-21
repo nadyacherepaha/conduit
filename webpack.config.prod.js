@@ -40,6 +40,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new MiniCssExtractPlugin(),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
