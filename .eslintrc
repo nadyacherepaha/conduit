@@ -3,6 +3,18 @@
   "extends": ["plugin:prettier/recommended", "airbnb", "prettier", "eslint:recommended"],
   "rules": {
     "newline-before-return": "error",
+    "react/jsx-wrap-multilines": [
+      "error", 
+      { 
+        "declaration": "parens-new-line",
+        "assignment": "parens",
+        "return": "parens-new-line",
+        "arrow": "parens",
+        "condition": "parens-new-line",
+        "logical": "parens",
+        "prop": "parens-new-line"
+      }
+    ],
     "max-len": [
       "warn",
       {
