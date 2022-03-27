@@ -11,6 +11,9 @@ module.exports = {
     filename: 'bundle-[hash].js',
     path: path.resolve(__dirname, 'dist'),
   },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js'],
+  },
   module: {
     rules: [
       {
