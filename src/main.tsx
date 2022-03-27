@@ -1,9 +1,18 @@
-import React, { FC } from 'react';
+import React, { FC, StrictMode } from 'react';
 import ReactDOM from 'react-dom';
-import './styles/main.scss';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
+import Header from './components/header/Header';
 
 const App: FC = () => {
-  return <h1>Welcome</h1>;
+  return (
+    <StrictMode>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Header />} />
+        </Routes>
+      </Router>
+    </StrictMode>
+  );
 };
 
 ReactDOM.render(<App />, document.getElementById('app'));
