@@ -1,21 +1,21 @@
 export const routesForAuthUser = [
   {
-    path: '/#/',
+    path: '/',
     title: 'Home',
     icon: '',
   },
   {
-    path: '/#/editor',
+    path: '/editor',
     title: 'New Article',
     icon: '',
   },
   {
-    path: '/#/settings',
+    path: '/settings',
     title: 'Settings',
     icon: '',
   },
   {
-    path: '/#/profile/:username',
+    path: '/profile/:username',
     component: 'Username',
     exact: false,
   },
@@ -23,17 +23,17 @@ export const routesForAuthUser = [
 
 export const routesForGuest = [
   {
-    path: '/#/',
+    path: '/',
     title: 'Home',
     icon: '',
   },
   {
-    path: '/#/login',
+    path: '/login',
     title: 'Sign In',
     icon: '',
   },
   {
-    path: '/#/register',
+    path: '/register',
     title: 'Sign Up',
     icon: '',
   },
