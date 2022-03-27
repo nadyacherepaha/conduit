@@ -1,5 +1,5 @@
-import getLinksForNavbar from '../utils/navbar';
-import { routesForAuthUser, routesForGuest } from '../constants/navbar';
+import getLinksForNavbar from '../src/utils/navbar';
+import { routesForAuthUser, routesForGuest } from '../src/constants/navbar';
 
 describe('Navigation menu', () => {
   const isUserAuth = true;
