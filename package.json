@@ -6,17 +6,7 @@
     "serve": "webpack serve --mode=development --progress",
     "build": "webpack --mode=development --config webpack.config.js",
     "build:prod": "webpack --mode=production --config webpack.config.prod.js",
-    "test": "jest --env=jsdom"
-  },
-  "jest": {
-    "moduleDirectories": [
-      "node_modules",
-      "src"
-    ],
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
-    }
+    "test": "jest --env=jsdom --config jest.config.js"
   },
   "husky": {
     "hooks": {
