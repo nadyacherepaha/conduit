@@ -1,40 +1,52 @@
-export const routesForAuthUser = [
+import { IRoutesForAuthUser, IRoutesForGuest } from './../types/navbarRoutes';
+import {
+  faUserAstronaut,
+  faPenToSquare,
+  faGear,
+  faHouseUser,
+} from '@fortawesome/free-solid-svg-icons';
+
+export const homePath: string = '/';
+export const editorPath: string = '/editor';
+export const settingsPath: string = '/settings';
+export const profilePath: string = '/profile/:username';
+export const loginPath: string = '/login';
+export const registerPath: string = '/register';
+
+export const routesForAuthUser: IRoutesForAuthUser[] = [
   {
-    path: '/',
+    path: homePath,
     title: 'Home',
-    icon: '',
+    icon: faHouseUser,
   },
   {
-    path: '/editor',
+    path: editorPath,
     title: 'New Article',
-    icon: '',
+    icon: faPenToSquare,
   },
   {
-    path: '/settings',
+    path: settingsPath,
     title: 'Settings',
-    icon: '',
+    icon: faGear,
   },
   {
-    path: '/profile/:username',
-    component: 'Username',
-    exact: false,
+    path: profilePath,
+    title: 'Username',
+    icon: faUserAstronaut,
   },
 ];
 
-export const routesForGuest = [
+export const routesForGuest: IRoutesForGuest[] = [
   {
-    path: '/',
+    path: homePath,
     title: 'Home',
-    icon: '',
   },
   {
-    path: '/login',
+    path: loginPath,
     title: 'Sign In',
-    icon: '',
   },
   {
-    path: '/register',
+    path: registerPath,
     title: 'Sign Up',
-    icon: '',
   },
 ];
