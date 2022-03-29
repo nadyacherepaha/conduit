@@ -13,10 +13,10 @@
       "pre-commit": "lint-staged"
     }
   },
-  "lint-staged": {    
+  "lint-staged": {
     "*.(js|jsx|ts|tsx)": [
       "eslint --fix",
-      "prettier --write", 
+      "prettier --write",
       "git add"
     ]
   },
@@ -77,6 +77,11 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-common-types": "^6.1.1",
+    "@fortawesome/fontawesome-free": "^6.1.1",
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.1.18",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^6.2.1"
