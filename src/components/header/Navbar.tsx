@@ -1,6 +1,8 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { FC, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { routesForAuthUser, routesForGuest } from '../../constants/navbar';
+import style from './navbar.module.scss';
 
 const Navbar: FC = () => {
   const [isAuthUser, setIsAuthUser] = useState<boolean>(false);
@@ -9,25 +11,26 @@ const Navbar: FC = () => {
 
   return (
     <>
-      <button onClick={onToggleAuthFlag}>Toggle the authorization flag</button>
+      <button type="button" onClick={onToggleAuthFlag}>
+        Toggle the authorization flag
+      </button>
       <nav data-testid="nav-menu">
-        <ul>
+        <ul className={style.list}>
           {isAuthUser ? (
-            <div>
+            <>
               {routesForAuthUser.map(({ path, title, icon }) => (
-                <NavLink key={path} to={path}>
-                  <img src={icon} alt="" />
+                <Link className={style.item} key={path} to={path}>
+                  <FontAwesomeIcon icon={icon} />
                   {title}
-                </NavLink>
+                </Link>
               ))}
-            </div>
+            </>
           ) : (
             <>
-              {routesForGuest.map(({ path, title, icon }) => (
-                <NavLink key={path} to={path}>
-                  <img src={icon} alt="" />
+              {routesForGuest.map(({ path, title }) => (
+                <Link className={style.item} key={path} to={path}>
                   {title}
-                </NavLink>
+                </Link>
               ))}
             </>
           )}

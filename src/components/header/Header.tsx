@@ -1,16 +1,22 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
+import style from './header.module.scss';
 
 const Header = () => {
   return (
-    <>
-      <NavLink className="header__logo" to="/">
-        <img data-testid="header-logo" src="/" alt="" />
-        icon
-      </NavLink>
+    <header className={style.header}>
+      <Link className={style.logo} to="/">
+        <img
+          className={style.icon}
+          data-testid="header-logo"
+          src="../assets/favicon.svg"
+          alt="header-logo"
+        />
+        Conduit
+      </Link>
       <Navbar />
-    </>
+    </header>
   );
 };
 
