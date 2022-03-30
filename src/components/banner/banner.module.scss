@@ -1,0 +1,25 @@
+@import '../../styles/variables';
+
+.banner {
+  text-align: center;
+  color: #fff;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  background-color: $lightGreenColor;
+  box-shadow: inset 0 8px 8px -8px rgba(0, 0, 0, .3), inset 0 -8px 8px -8px rgba(0, 0, 0, .3);
+
+  .title {
+    text-transform: lowercase;
+    margin: 0;
+    font-weight: 700 !important;
+    font-size: 3.5rem;
+    padding-bottom: 0.5rem;
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, .3);
+  }
+
+  .description {
+    font-size: 1.5rem;
+    font-weight: 300 !important;
+    margin: 0;
+  }
+}
