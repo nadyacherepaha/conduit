@@ -1,4 +1,4 @@
-import { IRoutesForAuthUser, IRoutesForGuest } from './../types/navbarRoutes';
+import { RoutesForAuthUser, RoutesForGuest } from './../types/navbarRoutes';
 import {
   faUserAstronaut,
   faPenToSquare,
@@ -13,7 +13,7 @@ export const profilePath: string = '/profile/:username';
 export const loginPath: string = '/login';
 export const registerPath: string = '/register';
 
-export const routesForAuthUser: IRoutesForAuthUser[] = [
+export const routesForAuthUser: RoutesForAuthUser[] = [
   {
     path: homePath,
     title: 'Home',
@@ -36,7 +36,7 @@ export const routesForAuthUser: IRoutesForAuthUser[] = [
   },
 ];
 
-export const routesForGuest: IRoutesForGuest[] = [
+export const routesForGuest: RoutesForGuest[] = [
   {
     path: homePath,
     title: 'Home',
