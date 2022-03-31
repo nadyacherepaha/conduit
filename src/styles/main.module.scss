@@ -15,8 +15,12 @@ a {
   text-decoration: none;
 }
 
-.container {
-  max-width: 1200px;
+.feedContainer {
+  max-width: 1140px;
   margin: auto;
-  text-align: center;
+  display: grid;
+  grid-template-areas: "feedList tags";
+  grid-template-rows: 200px 1fr 30px;
+  grid-template-columns: 75% 1fr;
+  grid-gap: 2.5rem;
 }
