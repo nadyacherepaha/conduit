@@ -1,0 +1,49 @@
+@import "../../styles/variables";
+
+.tags {
+  grid-area: tags;
+
+  .title {
+    color: $darkGreyColor;
+    font-weight: 300;
+  }
+
+  .tagItem {
+    font-size: .8rem;
+    color: $lightGreyColor;
+    border: 1px solid $lightGreyColor;
+    border-radius: 10rem;
+    padding: .2rem .4rem;
+    margin: 0 .5rem .5rem 0;
+    transition: .2s all ease;
+
+    &:active,
+    &:focus,
+    &:hover {
+      color: $greyColor;
+      border: 1px solid $greyColor;
+    }
+  }
+}
+
+.container {
+  background-color: rgba(0, 0, 0, .1);
+  border-radius: .2rem;
+  padding: 0 .5rem;
+
+  .bgColor {
+    display: inline-flex;
+    flex-wrap: wrap;
+    color: $whiteColor;
+    background-color: $greyColor;
+    border: 1px solid $greyColor;
+    transition: .5s all ease;
+  
+    &:active,
+    &:focus,
+    &:hover {
+      color: $whiteColor;
+      background-color: $darkGreyColor;
+    }
+  } 
+}
