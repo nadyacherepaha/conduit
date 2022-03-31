@@ -1,0 +1,52 @@
+@import "../../styles/variables";
+
+.feedItem {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid $lightGreyColor;
+
+  .info {
+    color: $greyColor;
+    opacity: .9;
+    transition: .4s all ease;
+
+    .title {
+      color: $darkGreyColor;
+      margin-bottom: 0;
+    }
+
+    .desc {
+      margin-top: 0;
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+      opacity: 1;
+      color: black;
+    }
+  }
+
+  .btnLike {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.2rem;
+    color: $lightGreenColor;
+    border: 1px solid $lightGreenColor;
+    background-color: transparent;
+    transition: .3s all ease;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $whiteColor;
+      background-color: $lightGreenColor;
+    }
+  }
+}
+
+.flex {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
