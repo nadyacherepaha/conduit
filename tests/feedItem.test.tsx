@@ -3,10 +3,24 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import FeedItem from '../src/components/feeds/FeedItem';
 import { HashRouter } from 'react-router-dom';
+import { FeedItemProps } from '../src/components/feeds/FeedItem';
 
 describe('FeedItem component', () => {
+  const props: FeedItemProps = {
+    favorited: true,
+    favoritesCount: 1,
+    createdAt: '',
+    author: {
+      username: '',
+      image: '',
+    },
+    description: '',
+    title: '',
+    tagList: [],
+  };
+
   beforeEach(() => {
-    render(<FeedItem />, { wrapper: HashRouter });
+    render(<FeedItem {...props} />, { wrapper: HashRouter });
   });
 
   it('should have a title', () => {
