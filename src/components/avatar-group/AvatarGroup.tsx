@@ -1,24 +1,25 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import style from './avatarGroup.module.scss';
+import { Profile } from '../../types/profile';
 
-const AvatarGroup: FC = () => {
+export interface AvatarGroupProps extends Profile {
+  createdAt: string;
+}
+
+const AvatarGroup: FC<AvatarGroupProps> = ({ createdAt, username, image }) => {
   return (
     <>
       <Link to="/">
-        <img
-          className={style.avatar}
-          src="https://api.realworld.io/images/demo-avatar.png"
-          alt="Avatar"
-        />
+        <img className={style.avatar} src={image} alt="Avatar" />
       </Link>
       <div className={style.info}>
         <Link data-testid="username" className={style.nickname} to="/">
-          Gerome
+          {username}
         </Link>
         <br />
         <time data-testid="date" className={style.date}>
-          November 24, 2021
+          {createdAt}
         </time>
       </div>
     </>
