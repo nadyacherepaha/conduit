@@ -5,34 +5,45 @@ import { Link } from 'react-router-dom';
 import AvatarGroup from '../avatar-group/AvatarGroup';
 import style from './feedItem.module.scss';
 import tagStyle from '../tags/tags.module.scss';
+import { Article } from '../../types/article';
 
-const FeedItem: FC = () => {
+export interface FeedItemProps extends Article {}
+
+const FeedItem: FC<FeedItemProps> = ({
+  favoritesCount,
+  createdAt,
+  author,
+  description,
+  title,
+  tagList,
+}) => {
+  const readMoreText = 'Read more...';
+
   return (
     <div className={style.feedItem}>
       <div className={style.flex}>
         <span>
-          <AvatarGroup />
+          <AvatarGroup {...author} createdAt={createdAt} />
         </span>
         <button className={style.btnLike} type="button">
           <FontAwesomeIcon data-testid="likes-icon" icon={faHeart} />
-          <span>1615</span>
+          <span>{favoritesCount}</span>
         </button>
       </div>
       <div className={style.flex}>
         <Link to="/" className={style.info}>
-          <h2 className={style.title}>Create a new implementation</h2>
+          <h2 className={style.title}>{title}</h2>
           <p data-testid="description" className={style.desc}>
-            join the community by creating a new implementation
+            {description}
           </p>
-          <small>Read more...</small>
+          <small>{readMoreText}</small>
         </Link>
         <div className={tagStyle.tags}>
-          <Link className={tagStyle.tagItem} to="/">
-            implementations
-          </Link>
-          <Link className={tagStyle.tagItem} to="/">
-            implementations
-          </Link>
+          {tagList.map((key, tagList) => {
+            <Link key={key} className={tagStyle.tagItem} to="/">
+              {tagList}
+            </Link>;
+          })}
         </div>
       </div>
     </div>
