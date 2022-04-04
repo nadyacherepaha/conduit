@@ -3,10 +3,17 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import AvatarGroup from '../src/components/avatar-group/AvatarGroup';
 import { HashRouter } from 'react-router-dom';
+import { AvatarGroupProps } from '../src/components/avatar-group/AvatarGroup';
 
 describe('AvatarGroup component', () => {
+  const props: AvatarGroupProps = {
+    username: '',
+    image: '',
+    createdAt: '',
+  };
+
   beforeEach(() => {
-    render(<AvatarGroup />, { wrapper: HashRouter });
+    render(<AvatarGroup {...props} />, { wrapper: HashRouter });
   });
 
   it('should have an avatar', () => {
