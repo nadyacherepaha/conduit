@@ -17,7 +17,7 @@ describe('PopularTags component', () => {
     expect(title).toHaveTextContent(titleText);
   });
   it('should have links', () => {
-    const tagLinks = screen.getAllByRole('link');
+    const tagLinks = screen.getAllByRole('button');
 
     expect(tagLinks).not.toBeNull();
     expect(tagLinks).not.toBeUndefined();
