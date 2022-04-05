@@ -18,7 +18,11 @@ const FeedItem: FC<FeedItemProps> = (props) => {
     <div className={style.feedItem}>
       <div className={style.flex}>
         <span>
-          <AvatarGroup {...author} createdAt={createdAt} />
+          <AvatarGroup
+            username={author.username}
+            image={author.image}
+            createdAt={createdAt}
+          />
         </span>
         <button className={style.btnLike} type="button">
           <FontAwesomeIcon data-testid="likes-icon" icon={faHeart} />

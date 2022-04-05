@@ -44,11 +44,32 @@ const articles: Article[] = [
 const FeedList: FC = () => {
   return (
     <div className={style.feedList}>
-      {articles.map((article, index) => (
-        <Fragment key={index}>
-          <FeedItem {...article} />
-        </Fragment>
-      ))}
+      {articles.map(
+        (
+          {
+            title,
+            author,
+            description,
+            createdAt,
+            tagList,
+            favoritesCount,
+            favorited,
+          },
+          index
+        ) => (
+          <Fragment key={index}>
+            <FeedItem
+              favorited={favorited}
+              favoritesCount={favoritesCount}
+              createdAt={createdAt}
+              author={author}
+              description={description}
+              title={title}
+              tagList={tagList}
+            />
+          </Fragment>
+        )
+      )}
     </div>
   );
 };

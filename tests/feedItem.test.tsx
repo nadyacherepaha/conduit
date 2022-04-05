@@ -20,7 +20,18 @@ describe('FeedItem component', () => {
   };
 
   beforeEach(() => {
-    render(<FeedItem {...props} />, { wrapper: HashRouter });
+    render(
+      <FeedItem
+        favorited={props.favorited}
+        favoritesCount={props.favoritesCount}
+        createdAt={props.createdAt}
+        author={props.author}
+        description={props.description}
+        title={props.title}
+        tagList={props.tagList}
+      />,
+      { wrapper: HashRouter }
+    );
   });
 
   it('should have a title', () => {
