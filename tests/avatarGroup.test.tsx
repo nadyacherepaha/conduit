@@ -13,7 +13,14 @@ describe('AvatarGroup component', () => {
   };
 
   beforeEach(() => {
-    render(<AvatarGroup {...props} />, { wrapper: HashRouter });
+    render(
+      <AvatarGroup
+        createdAt={props.createdAt}
+        image={props.image}
+        username={props.username}
+      />,
+      { wrapper: HashRouter }
+    );
   });
 
   it('should have an avatar', () => {
