@@ -1,5 +1,5 @@
 {
-  "name": "basic-webpack-build",
+  "name": "conduit",
   "version": "1.0.0",
   "main": "main.tsx",
   "scripts": {
@@ -20,7 +20,7 @@
       "git add"
     ]
   },
-  "repository": "https://github.com/nadyacherepaha/basic-webpack-build.git",
+  "repository": "https://github.com/nadyacherepaha/conduit.git",
   "author": "nadyacherepaha <nad.cherepaha@gmail.com>",
   "license": "MIT",
   "private": true,
