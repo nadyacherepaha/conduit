@@ -7,7 +7,9 @@ export interface AvatarGroupProps extends Profile {
   createdAt: string;
 }
 
-const AvatarGroup: FC<AvatarGroupProps> = ({ createdAt, username, image }) => {
+const AvatarGroup: FC<AvatarGroupProps> = (props) => {
+  const { createdAt, username, image } = props;
+
   return (
     <>
       <Link to="/">

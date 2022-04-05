@@ -9,14 +9,9 @@ import { Article } from '../../types/article';
 
 export interface FeedItemProps extends Article {}
 
-const FeedItem: FC<FeedItemProps> = ({
-  favoritesCount,
-  createdAt,
-  author,
-  description,
-  title,
-  tagList,
-}) => {
+const FeedItem: FC<FeedItemProps> = (props) => {
+  const { favoritesCount, createdAt, author, description, title, tagList } =
+    props;
   const readMoreText = 'Read more...';
 
   return (
