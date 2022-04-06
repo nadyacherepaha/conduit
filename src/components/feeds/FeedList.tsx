@@ -10,7 +10,7 @@ const FeedList: FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${BASE_URL}articles`);
+        const response = await fetch(`${BASE_URL}/articles`);
         const result = await response.json();
         setArticles(result.articles);
       } catch (e) {
