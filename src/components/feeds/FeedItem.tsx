@@ -13,6 +13,9 @@ const FeedItem: FC<FeedItemProps> = (props) => {
   const { favoritesCount, createdAt, author, description, title, tagList } =
     props;
   const readMoreText = 'Read more...';
+  const tags = tagList.map((item) => item);
+
+  const dateOfCreation = new Date(createdAt);
 
   return (
     <div className={style.feedItem}>
@@ -21,7 +24,7 @@ const FeedItem: FC<FeedItemProps> = (props) => {
           <AvatarGroup
             username={author.username}
             image={author.image}
-            createdAt={createdAt}
+            createdAt={dateOfCreation.toDateString()}
           />
         </span>
         <button className={style.btnLike} type="button">
@@ -38,11 +41,11 @@ const FeedItem: FC<FeedItemProps> = (props) => {
           <small>{readMoreText}</small>
         </Link>
         <div className={tagStyle.tags}>
-          {tagList.map((key, tagList) => {
+          {tags.map((tag, key) => (
             <Link key={key} className={tagStyle.tagItem} to="/">
-              {tagList}
-            </Link>;
-          })}
+              {tag}
+            </Link>
+          ))}
         </div>
       </div>
     </div>
