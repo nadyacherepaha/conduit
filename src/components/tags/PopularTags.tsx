@@ -11,7 +11,7 @@ const PopularTags: FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${BASE_URL}tags`);
+        const response = await fetch(`${BASE_URL}/tags`);
         const result = await response.json();
         setTags(result.tags);
       } catch (e) {
