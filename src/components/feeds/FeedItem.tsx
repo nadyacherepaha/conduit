@@ -13,7 +13,6 @@ const FeedItem: FC<FeedItemProps> = (props) => {
   const { favoritesCount, createdAt, author, description, title, tagList } =
     props;
   const readMoreText = 'Read more...';
-  const tags = tagList.map((item) => item);
 
   const dateOfCreation = new Date(createdAt);
 
@@ -41,7 +40,7 @@ const FeedItem: FC<FeedItemProps> = (props) => {
           <small>{readMoreText}</small>
         </Link>
         <div className={tagStyle.tags}>
-          {tags.map((tag, key) => (
+          {tagList.map((tag, key) => (
             <Link key={key} className={tagStyle.tagItem} to="/">
               {tag}
             </Link>
