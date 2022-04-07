@@ -2,6 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import classNames from 'classnames';
 import style from './tags.module.scss';
 import BASE_URL from '../../utils/baseUrl';
+import { getData } from '../../services/getData';
 
 const onFilterTags = () => {};
 
@@ -11,8 +12,7 @@ const PopularTags: FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/tags`);
-        const result = await response.json();
+        const result = await getData(`${BASE_URL}/tags`);
         setTags(result.tags);
       } catch (e) {
         const errorMessage = 'Something went wrong';
