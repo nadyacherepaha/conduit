@@ -10,7 +10,7 @@ const Header = () => {
         <img
           className={style.icon}
           data-testid="header-logo"
-          src="../assets/favicon.svg"
+          src="./assets/favicon.svg"
           alt="header-logo"
         />
         Conduit
