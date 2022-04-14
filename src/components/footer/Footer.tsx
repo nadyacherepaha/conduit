@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <footer className={style.footer}>
       <Link className={style.link} to="/">
-        <FontAwesomeIcon icon={faGithubAlt} />
+        <FontAwesomeIcon data-testid="footer-icon" icon={faGithubAlt} />
         Fork on GitHub
       </Link>
     </footer>
