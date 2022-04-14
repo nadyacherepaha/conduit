@@ -2,6 +2,7 @@ import React, { FC, StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
 import HomePage from './pages/home-page/HomePage';
 import {
   homePath,
@@ -26,6 +27,7 @@ const App: FC = () => {
           <Route path={profilePath} element={<HomePage />} />
           <Route path={settingsPath} element={<HomePage />} />
         </Routes>
+        <Footer />
       </Router>
     </StrictMode>
   );
