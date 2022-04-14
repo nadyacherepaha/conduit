@@ -8,10 +8,8 @@ const initialState: AuthUserState = {
   user: false,
 };
 
-const sliceUser = 'authUser';
-
 export const userSlice = createSlice({
-  name: sliceUser,
+  name: 'authUser',
   initialState,
   reducers: {
     signInUser(state) {
