@@ -1,8 +1,10 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import userReducer from '../reducers/authReducer';
+import filterTagsReducer from '../reducers/filterTagsReducer';
 
 const reducers = {
   user: userReducer,
+  filterTags: filterTagsReducer,
 };
 
 const rootReducer = combineReducers({
