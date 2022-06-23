@@ -2,7 +2,7 @@
 @import './normalize.scss';
 
 html {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 body {
@@ -18,10 +18,11 @@ a {
 .feedContainer {
   max-width: 1140px;
   margin: auto;
+  padding: 0 20px;
   display: grid;
-  grid-template-areas: "feedList tags";
-  grid-template-rows: 200px 1fr 30px;
+  grid-template: 
+    "feedToggle tags" 0px
+    "feedList tags" 105% / 1fr 30px;
   grid-template-columns: 75% 1fr;
   grid-gap: 2.5rem;
-  height: 100vh;
 }
