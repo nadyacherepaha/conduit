@@ -9,5 +9,5 @@
   "jsxBracketSameLine": false,
   "parser": "flow",
   "semi": true,
-  "editor.formatOnSave": true
+  "editor.formatOnSave": false
 }
