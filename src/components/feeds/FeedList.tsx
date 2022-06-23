@@ -3,23 +3,30 @@ import FeedItem from './FeedItem';
 import style from './feedList.module.scss';
 import BASE_URL from '../../utils/baseUrl';
 import { Article } from '../../types/article';
+import { useAppSelector } from '../../hooks/redux';
+import getFilteredTags from '../../redux/selectors/filterTagsSelector';
 
 const FeedList: FC = () => {
   const [articles, setArticles] = useState<Article[]>([]);
+  const { entities, tag } = useAppSelector(getFilteredTags);
+
+  const filteredArticles = entities.articles;
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`${BASE_URL}/articles`);
+      const result = await response.json();
+      setArticles(result.articles);
+    } catch (e) {
+      const errorMessage = 'Something went wrong';
+      console.error(errorMessage);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`${BASE_URL}/articles`);
-        const result = await response.json();
-        setArticles(result.articles);
-      } catch (e) {
-        const errorMessage = 'Something went wrong';
-        console.error(errorMessage);
-      }
-    };
-    fetchData();
-  }, []);
+    filteredArticles ? setArticles(entities.articles) : fetchData();
+    !tag && fetchData();
+  }, [filteredArticles, tag]);
 
   return (
     <div className={style.feedList}>
