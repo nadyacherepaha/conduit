@@ -3,24 +3,41 @@ import classNames from 'classnames';
 import style from './tags.module.scss';
 import BASE_URL from '../../utils/baseUrl';
 import { getData } from '../../services/getData';
-
-const onFilterTags = () => {};
+import { useAppDispatch } from '../../hooks/redux';
+import filterTags from '../../redux/actions/filterTagsAction';
+import { filterTagsSlice } from '../../redux/reducers/filterTagsReducer';
 
 const PopularTags: FC = () => {
   const [tags, setTags] = useState<string[]>([]);
+  const [tab, setTab] = useState<string>('');
+  const dispatch = useAppDispatch();
+
+  const { addSelectedTag } = filterTagsSlice.actions;
+
+  const fetchData = async () => {
+    try {
+      const result = await getData(`${BASE_URL}/tags`);
+      setTags(result.tags);
+    } catch (e) {
+      const errorMessage = 'Something went wrong';
+      console.error(errorMessage);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
+    fetchData();
+
+    const onFilterTags = async () => {
       try {
-        const result = await getData(`${BASE_URL}/tags`);
-        setTags(result.tags);
+        dispatch(addSelectedTag(tab));
+        await dispatch(filterTags(tab));
       } catch (e) {
-        const errorMessage = 'Something went wrong';
-        console.error(errorMessage);
+        console.log(e);
       }
     };
-    fetchData();
-  }, []);
+
+    tab && onFilterTags();
+  }, [tab]);
 
   return (
     <div className={classNames(style.container, style.tags)}>
@@ -29,7 +46,7 @@ const PopularTags: FC = () => {
         <button
           key={key}
           className={classNames(style.tagItem, style.bgColor)}
-          onClick={onFilterTags}>
+          onClick={() => setTab(tag)}>
           {tag}
         </button>
       ))}
