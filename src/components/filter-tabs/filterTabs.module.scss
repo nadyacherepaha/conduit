@@ -1,0 +1,29 @@
+@import '../../styles/_variables.scss';
+
+@mixin activeTab {
+  border-bottom: 2px solid $lightGreenColor;
+}
+
+.feedToggle {
+  grid-area: feedToggle;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid $lightGreyColor;
+
+  .toggleButton {
+    color: $lightGreenColor;
+    border: 0;
+    background: transparent;
+    padding: 0 1rem 1rem 1rem;
+    text-transform: capitalize;
+
+    &:hover,
+    &:active,
+    &:focus {
+      @include activeTab()
+    }
+  }
+
+  .active {
+    @include activeTab()
+  }
+}
