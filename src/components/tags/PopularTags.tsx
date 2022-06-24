@@ -5,14 +5,12 @@ import BASE_URL from '../../utils/baseUrl';
 import { getData } from '../../services/getData';
 import { useAppDispatch } from '../../hooks/redux';
 import filterTags from '../../redux/actions/filterTagsAction';
-import { filterTagsSlice } from '../../redux/reducers/filterTagsReducer';
+import { addSelectedTag } from '../../redux/reducers/filterTagsReducer';
 
 const PopularTags: FC = () => {
   const [tags, setTags] = useState<string[]>([]);
   const [tab, setTab] = useState<string>('');
   const dispatch = useAppDispatch();
-
-  const { addSelectedTag } = filterTagsSlice.actions;
 
   const fetchData = async () => {
     try {

@@ -21,7 +21,7 @@ interface FulfilledAction {
   };
 }
 
-export const filterTagsSlice = createSlice({
+const filterTagsSlice = createSlice({
   name: 'tags',
   initialState,
   reducers: {
@@ -54,4 +54,7 @@ export const filterTagsSlice = createSlice({
   },
 });
 
+export const filterTagsAction = filterTagsSlice.actions;
+export const addSelectedTag = filterTagsAction.addSelectedTag;
+export const deleteSelectedTag = filterTagsAction.deleteSelectedTag;
 export default filterTagsSlice.reducer;
