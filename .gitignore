@@ -10,3 +10,5 @@ dist/
 # Dependency directory
 node_modules
 .idea
+
+.DS_Store
