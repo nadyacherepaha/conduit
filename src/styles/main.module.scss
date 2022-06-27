@@ -26,3 +26,28 @@ a {
   grid-template-columns: 75% 1fr;
   grid-gap: 2.5rem;
 }
+
+.errorMessage {
+  position: absolute;
+  bottom: 5px;
+  left: 20px;
+  z-index: 3;
+  display: block;
+  width: 200px;
+  padding: 10px;
+  color: black;
+  border: red solid 1px;
+  background-color: indianred;
+  animation-name: popUpNotification;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+}
+
+@keyframes popUpNotification {
+  from {
+    bottom: -70px;
+  }
+  to {
+    bottom: 5px;
+  }
+}

@@ -6,19 +6,22 @@ import { getData } from '../../services/getData';
 import { useAppDispatch } from '../../hooks/redux';
 import filterTags from '../../redux/actions/filterTagsAction';
 import { addSelectedTag } from '../../redux/reducers/filterTagsReducer';
+import ErrorPopUp from '../common/error-pop-up/ErrorPopUp';
 
 const PopularTags: FC = () => {
   const [tags, setTags] = useState<string[]>([]);
   const [tab, setTab] = useState<string>('');
+  const [error, setError] = useState<any>();
+
   const dispatch = useAppDispatch();
 
   const fetchData = async () => {
     try {
       const result = await getData(`${BASE_URL}/tags`);
       setTags(result.tags);
-    } catch (e) {
-      const errorMessage = 'Something went wrong';
-      console.error(errorMessage);
+    } catch (e: any) {
+      setError(e);
+      console.error('message', e.message);
     }
   };
 
@@ -29,7 +32,8 @@ const PopularTags: FC = () => {
       try {
         dispatch(addSelectedTag(tab));
         await dispatch(filterTags(tab));
-      } catch (e) {
+      } catch (e: any) {
+        setError(e);
         console.log(e);
       }
     };
@@ -40,6 +44,7 @@ const PopularTags: FC = () => {
   return (
     <div className={classNames(style.container, style.tags)}>
       <h3 className={style.title}>Popular Tags</h3>
+      {error && <ErrorPopUp />}
       {tags.map((tag, key) => (
         <button
           key={key}

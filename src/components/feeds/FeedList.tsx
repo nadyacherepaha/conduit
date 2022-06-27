@@ -5,9 +5,12 @@ import BASE_URL from '../../utils/baseUrl';
 import { Article } from '../../types/article';
 import { useAppSelector } from '../../hooks/redux';
 import getFilteredTags from '../../redux/selectors/filterTagsSelector';
+import ErrorPopUp from '../common/error-pop-up/ErrorPopUp';
 
 const FeedList: FC = () => {
   const [articles, setArticles] = useState<Article[]>([]);
+  const [error, setError] = useState<any>();
+
   const { entities, tag } = useAppSelector(getFilteredTags);
 
   const filteredArticles = entities.articles;
@@ -17,9 +20,9 @@ const FeedList: FC = () => {
       const response = await fetch(`${BASE_URL}/articles`);
       const result = await response.json();
       setArticles(result.articles);
-    } catch (e) {
-      const errorMessage = 'Something went wrong';
-      console.error(errorMessage);
+    } catch (e: any) {
+      setError(e);
+      console.error(e);
     }
   };
 
@@ -30,6 +33,7 @@ const FeedList: FC = () => {
 
   return (
     <div className={style.feedList}>
+      {error && <ErrorPopUp />}
       {articles.map(
         (
           {
