@@ -9,6 +9,10 @@
   padding-bottom: 2.5rem;
   border-bottom: 1px solid $lightGreyColor;
 
+  @media (max-width: 768px) {
+    padding-bottom: 0;
+  }
+
   .toggleButton {
     color: $lightGreenColor;
     border: 0;
