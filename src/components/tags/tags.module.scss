@@ -48,3 +48,15 @@
     }
   } 
 }
+
+@media (max-width: 768px) {
+  .tags {
+    .title {
+      margin: 1.1vh 0;
+    }
+  }
+
+  .container {
+    padding: 0 1.2vh 1vh 1.2vh;
+  }
+}
