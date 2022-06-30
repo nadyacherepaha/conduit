@@ -1,5 +1,9 @@
 @import '../../styles/_variables';
 
+.hiddenContent {
+  overflow: hidden;
+}
+
 .list {
   display: flex;
   margin: 0;
@@ -12,6 +16,31 @@
     padding: .8rem .5rem .5rem .5rem;
     background-color: transparent;
     border-bottom: 5px solid transparent;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $darkGreyColor;
+      border-color: $lightGreenColor;
+
+      svg {
+        color: $lightGreenColor;
+      }
+    }
+  }
+}
+
+.closeListBurger {
+
+  @media (max-width: 768px) { 
+    transform: translateX(100%);
+  }
+}
+
+.openListBurger {
+
+  @media (max-width: 768px) {
+    transform: translateX(0);
   }
 }
 
@@ -20,13 +49,105 @@ svg {
   transition: 0.5s all ease;
 }
 
-.item:hover,
-.item:focus,
-.item:active {
-  color: $darkGreyColor;
-  border-color: $lightGreenColor;
+@mixin burgerMenuContainer {
+  width: 2rem;
+  height: 2rem;
+  position: fixed;
+  top: .8rem;
+  right: 1rem;
+  display: none;
 
-    svg {
-      color: $lightGreenColor;
+  @media (max-width: 768px) {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: column nowrap;
+    z-index: 3;
+  }
+}
+
+@mixin burgerMenuSpan {
+  width: 2rem;
+  height: 0.25rem;
+  border-radius: 10px;
+  transform-origin: 1px;
+  transition: all 0.5s linear;
+}
+
+@mixin darkBg {
+  background-color: #37414d;
+}
+
+@mixin lightBg {
+  background-color: #fff;
+}
+
+@mixin openBurger {
+  &:nth-child(1) {
+    transform: rotate(45deg);
+  }
+  &:nth-child(2) {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  &:nth-child(3) {
+    transform: rotate(-45deg);
+  }
+}
+
+@mixin closeBurger {
+  &:nth-child(1) {
+    transform: rotate(0);
+  }
+  &:nth-child(2) {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  &:nth-child(3) {
+    transform: rotate(0);
+  }
+}
+
+.burgerMenuIsOpen {
+  @include burgerMenuContainer();
+
+  span {
+    @include burgerMenuSpan();
+    @include lightBg();
+    @include openBurger();
+  }
+}
+
+.burgerMenuIsClose {
+  @include burgerMenuContainer();
+
+  span {
+    @include burgerMenuSpan();
+    @include darkBg();
+    @include closeBurger();
+  }
+}
+
+@media (max-width: 768px) {
+  .list {
+    flex-flow: column nowrap;
+    background-color: #37414d;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    padding: 3.5rem;
+    transition: transform 1s ease-in-out;
+    z-index: 2;
+
+    .item {
+      color: #fff;
+      border: 0;
+
+      &:active,
+      &:focus {
+        color: $lightGreenColor;
+      }
     }
+  }
 }
