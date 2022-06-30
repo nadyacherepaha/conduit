@@ -1,7 +1,8 @@
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classNames from 'classnames';
 import AvatarGroup from '../avatar-group/AvatarGroup';
 import style from './feedItem.module.scss';
 import tagStyle from '../tags/tags.module.scss';
@@ -31,15 +32,15 @@ const FeedItem: FC<FeedItemProps> = (props) => {
           <span>{favoritesCount}</span>
         </button>
       </div>
-      <div className={style.flex}>
+      <div className={classNames(style.flex, style.mobileBlock)}>
         <Link to="/" className={style.info}>
           <h2 className={style.title}>{title}</h2>
           <p data-testid="description" className={style.desc}>
             {description}
           </p>
-          <small>{readMoreText}</small>
+          <small className={style.readMore}>{readMoreText}</small>
         </Link>
-        <div className={tagStyle.tags}>
+        <div className={classNames(style.tags, tagStyle.tags)}>
           {tagList.map((tag, key) => (
             <Link key={key} className={tagStyle.tagItem} to="/">
               {tag}

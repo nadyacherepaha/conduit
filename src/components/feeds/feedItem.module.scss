@@ -50,3 +50,24 @@
   justify-content: space-between;
 }
 
+@media (max-width: 768px) {
+
+  .feedItem {
+    padding: .8rem 0;
+  }
+
+  .mobileBlock {
+    display: block;
+  }
+
+  .readMore {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
