@@ -22,7 +22,7 @@ a {
   display: grid;
   grid-template: 
     "feedToggle tags" 0px
-    "feedList tags" 105% / 1fr 30px;
+    "feedList tags";
   grid-template-columns: 75% 1fr;
   grid-gap: 2.5rem;
 }
@@ -50,5 +50,16 @@ a {
   }
   to {
     top: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .feedContainer {
+    grid-template: 
+      "tags"
+      "feedToggle"
+      "feedList";
+    grid-template-columns: 100% 1fr;
+    grid-gap: 1rem;
   }
 }
