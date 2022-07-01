@@ -50,8 +50,7 @@ svg {
 }
 
 @mixin burgerMenuContainer {
-  width: 2rem;
-  height: 2rem;
+  height: 30px;
   position: fixed;
   top: .8rem;
   right: 1rem;
@@ -66,8 +65,8 @@ svg {
 }
 
 @mixin burgerMenuSpan {
-  width: 2rem;
-  height: 0.25rem;
+  width: 28px;
+  height: 3.5px;
   border-radius: 10px;
   transform-origin: 1px;
   transition: all 0.5s linear;
