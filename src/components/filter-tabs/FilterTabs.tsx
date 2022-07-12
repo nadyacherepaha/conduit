@@ -13,8 +13,6 @@ const FilterTabs = () => {
     dispatch(deleteSelectedTag());
   };
 
-  console.log(tag);
-
   return (
     <div className={style.feedToggle}>
       <button
