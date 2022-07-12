@@ -15,6 +15,7 @@ import {
 } from './constants/navbar';
 import './styles/main.module.scss';
 import { Provider } from 'react-redux';
+import SignUpPage from './pages/sign-up-page/SignUpPage';
 
 const App: FC = () => {
   const store = setupStore();
@@ -27,7 +28,7 @@ const App: FC = () => {
           <Routes>
             <Route path={homePath} element={<HomePage />} />
             <Route path={loginPath} element={<HomePage />} />
-            <Route path={registerPath} element={<HomePage />} />
+            <Route path={registerPath} element={<SignUpPage />} />
             <Route path={editorPath} element={<HomePage />} />
             <Route path={profilePath} element={<HomePage />} />
             <Route path={settingsPath} element={<HomePage />} />
