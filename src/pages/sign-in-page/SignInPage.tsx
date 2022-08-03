@@ -1,12 +1,16 @@
 import React, { FC, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useInput } from '../../hooks/input-hook/UseInput';
 import BASE_URL from '../../utils/baseUrl';
+import mainStyle from '../../styles/main.module.scss';
+import { registerPath } from '../../constants/navbar';
 
 const SignInPage: FC = () => {
   const emailText = 'email';
   const passwordText = 'password';
+  const enterText = 'Enter your ';
+  const signInText = 'Sign in';
   const navigate = useNavigate();
 
   const [error, setError] = useState<string>('');
@@ -37,15 +41,22 @@ const SignInPage: FC = () => {
   };
 
   return (
-    <>
-      {error && <span>{error}</span>}
-      <form onSubmit={handleSubmit}>
+    <div className={mainStyle.formContainer}>
+      {error && <span className={mainStyle.errorMessage}>{error}</span>}
+      <h1 className={mainStyle.title}>{signInText}</h1>
+      <Link to={registerPath} className={mainStyle.link}>
+        Need an account?
+      </Link>
+      {error && <span className={mainStyle.error}>{error}</span>}
+      <form className={mainStyle.form} onSubmit={handleSubmit}>
         <label>
-          {emailText}:
+          {enterText} {emailText}:
+          <br />
           <input placeholder={emailText} type="email" {...bindEmail} required />
         </label>
         <label>
-          {passwordText}:
+          {enterText} {passwordText}:
+          <br />
           <input
             placeholder={passwordText}
             type="password"
@@ -53,9 +64,11 @@ const SignInPage: FC = () => {
             required
           />
         </label>
-        <input type="submit" value="Submit" />
+        <button className={mainStyle.greenBtn} type="submit">
+          {signInText}
+        </button>
       </form>
-    </>
+    </div>
   );
 };
 

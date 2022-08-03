@@ -1,13 +1,17 @@
 import React, { FC, useReducer } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { useInput } from '../../hooks/input-hook/UseInput';
 import BASE_URL from '../../utils/baseUrl';
+import mainStyle from '../../styles/main.module.scss';
+import { loginPath } from '../../constants/navbar';
 
 const SignUpPage: FC = () => {
   const usernameText = 'username';
   const emailText = 'email';
   const passwordText = 'password';
+  const enterText = 'Enter your ';
+  const signUpText = 'Sign up';
   const navigate = useNavigate();
 
   const reducer = (state = '', action: any) => {
@@ -64,11 +68,16 @@ const SignUpPage: FC = () => {
   };
 
   return (
-    <>
-      {state && <span>{state}</span>}
-      <form onSubmit={handleSubmit}>
+    <div className={mainStyle.formContainer}>
+      {state && <span className={mainStyle.errorMessage}>{state}</span>}
+      <h1 className={mainStyle.title}>{signUpText}</h1>
+      <Link to={loginPath} className={mainStyle.link}>
+        Have an account?
+      </Link>
+      {state && <span className={mainStyle.error}>{state}</span>}
+      <form className={mainStyle.form} onSubmit={handleSubmit}>
         <label>
-          {usernameText}:
+          {enterText} {usernameText}:
           <input
             placeholder={usernameText}
             type="text"
@@ -77,11 +86,11 @@ const SignUpPage: FC = () => {
           />
         </label>
         <label>
-          {emailText}:
+          {enterText} {emailText}:
           <input placeholder={emailText} type="email" {...bindEmail} required />
         </label>
         <label>
-          {passwordText}:
+          {enterText} {passwordText}:
           <input
             placeholder={passwordText}
             type="password"
@@ -95,9 +104,11 @@ const SignUpPage: FC = () => {
             </span>
           )}
         </label>
-        <input type="submit" value="Submit" />
+        <button className={mainStyle.greenBtn} type="submit">
+          {signUpText}
+        </button>
       </form>
-    </>
+    </div>
   );
 };
 
