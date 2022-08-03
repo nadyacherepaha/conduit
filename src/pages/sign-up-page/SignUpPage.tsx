@@ -5,6 +5,8 @@ import { useInput } from '../../hooks/input-hook/UseInput';
 import BASE_URL from '../../utils/baseUrl';
 import mainStyle from '../../styles/main.module.scss';
 import { loginPath } from '../../constants/navbar';
+import {writeTokenForAuthUser} from "../../redux/actions/userActions";
+import {useAppDispatch} from "../../hooks/redux";
 
 const SignUpPage: FC = () => {
   const usernameText = 'username';
@@ -13,6 +15,7 @@ const SignUpPage: FC = () => {
   const enterText = 'Enter your ';
   const signUpText = 'Sign up';
   const navigate = useNavigate();
+  const useDispatch = useAppDispatch();
 
   const reducer = (state = '', action: any) => {
     switch (action.type) {
@@ -45,13 +48,16 @@ const SignUpPage: FC = () => {
 
   const handleSubmit = async () => {
     try {
-      await axios.post(`${BASE_URL}/users`, {
+      const result = await axios.post(`${BASE_URL}/users`, {
         user: {
           email: `${email}`,
           password: `${password}`,
           username: `${username}`,
         },
       });
+      const token = result.data.user.token;
+
+      token && useDispatch(writeTokenForAuthUser(token))
       resetUsername();
       resetEmail();
       resetPassword();

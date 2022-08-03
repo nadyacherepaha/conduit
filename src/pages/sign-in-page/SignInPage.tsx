@@ -5,6 +5,8 @@ import { useInput } from '../../hooks/input-hook/UseInput';
 import BASE_URL from '../../utils/baseUrl';
 import mainStyle from '../../styles/main.module.scss';
 import { registerPath } from '../../constants/navbar';
+import { useAppDispatch } from "../../hooks/redux";
+import { writeTokenForAuthUser } from '../../redux/actions/userActions';
 
 const SignInPage: FC = () => {
   const emailText = 'email';
@@ -12,6 +14,7 @@ const SignInPage: FC = () => {
   const enterText = 'Enter your ';
   const signInText = 'Sign in';
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const [error, setError] = useState<string>('');
 
@@ -25,12 +28,15 @@ const SignInPage: FC = () => {
 
   const handleSubmit = async () => {
     try {
-      await axios.post(`${BASE_URL}/users/login`, {
+      const result = await axios.post(`${BASE_URL}/users/login`, {
         user: {
           email: `${email}`,
           password: `${password}`,
         },
       });
+      const token = result.data.user.token;
+
+      token && dispatch(writeTokenForAuthUser(token))
       resetEmail();
       resetPassword();
       navigate('/');
