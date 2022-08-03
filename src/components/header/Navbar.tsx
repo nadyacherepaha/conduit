@@ -4,12 +4,17 @@ import { Link } from 'react-router-dom';
 import { routesForAuthUser, routesForGuest } from '../../constants/navbar';
 import style from './navbar.module.scss';
 import classNames from 'classnames';
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { userSlice } from "../../redux/reducers/authReducer";
+import storage from '../../utils/storage';
 
 const Navbar: FC = () => {
-  const [isAuthUser, setIsAuthUser] = useState<boolean>(false);
-  const onToggleAuthFlag: () => void = () =>
-    setIsAuthUser((prevStateAuth) => !prevStateAuth);
+  const dispatch = useAppDispatch();
+  const { signInUser } = userSlice.actions;
+  const { user } = useAppSelector(state => state.user)
   const [openBurger, setOpenBurger] = useState<boolean>(false);
+
+  storage.getToken() && dispatch(signInUser());
 
   const onCloseBurger = () => {
     openBurger && setOpenBurger(false);
@@ -25,9 +30,6 @@ const Navbar: FC = () => {
 
   return (
     <>
-      <button type="button" onClick={onToggleAuthFlag}>
-        Toggle the authorization flag
-      </button>
       <nav data-testid="nav-menu">
         <div
           role="button"
@@ -45,7 +47,7 @@ const Navbar: FC = () => {
             style.list,
             openBurger ? style.openListBurger : style.closeListBurger
           )}>
-          {isAuthUser ? (
+          {user ? (
             <>
               {routesForAuthUser.map(({ path, title, icon }) => (
                 <Link
