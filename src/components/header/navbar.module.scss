@@ -144,7 +144,8 @@ svg {
       border: 0;
 
       &:active,
-      &:focus {
+      &:focus,
+      &:hover {
         color: $lightGreenColor;
       }
     }
