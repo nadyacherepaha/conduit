@@ -7,7 +7,6 @@ import AvatarGroup from '../avatar-group/AvatarGroup';
 import style from './feedItem.module.scss';
 import tagStyle from '../tags/tags.module.scss';
 import { Article } from '../../types/article';
-
 export interface FeedItemProps extends Article {}
 
 const FeedItem: FC<FeedItemProps> = (props) => {
