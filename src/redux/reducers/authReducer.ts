@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import {writeTokenForAuthUser} from "../actions/userActions";
 
 export interface AuthUserState {
   user: boolean;
@@ -15,6 +16,11 @@ export const userSlice = createSlice({
     signInUser(state) {
       state.user = true;
     },
+      },
+    extraReducers: (builder) => {
+      builder.addCase(writeTokenForAuthUser.fulfilled, (state) => {
+        state.user = true;
+      })
   },
 });
 
