@@ -36,7 +36,10 @@ const SignInPage: FC = () => {
       });
       const token = result.data.user.token;
 
-      token && dispatch(writeTokenForAuthUser(token))
+      if (Boolean(token)) {
+        dispatch(writeTokenForAuthUser(token))
+      }
+
       resetEmail();
       resetPassword();
       navigate('/');
