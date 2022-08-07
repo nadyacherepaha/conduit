@@ -44,8 +44,9 @@ const SignInPage: FC = () => {
       resetPassword();
       navigate('/');
     } catch (e: any) {
-      e.response.data.errors['email or password'] &&
+      if (Boolean(e.response.data.errors['email or password'])) {
         setError('Email or password is invalid');
+      }
     }
   };
 
