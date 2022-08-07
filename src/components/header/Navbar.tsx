@@ -5,17 +5,16 @@ import { routesForAuthUser, routesForGuest } from '../../constants/navbar';
 import style from './navbar.module.scss';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { userSlice } from "../../redux/reducers/authReducer";
+import { signInUser } from "../../redux/reducers/authReducer";
 import storage from '../../utils/storage';
 
 const Navbar: FC = () => {
   const dispatch = useAppDispatch();
-  const { signInUser } = userSlice.actions;
   const { user } = useAppSelector(state => state.user)
   const [openBurger, setOpenBurger] = useState<boolean>(false);
 
   if (Boolean(storage.getToken())) {
-    dispatch(signInUser());
+    dispatch(signInUser);
   }
 
   const onCloseBurger = () => {
