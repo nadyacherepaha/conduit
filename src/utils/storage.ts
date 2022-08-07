@@ -1,18 +1,22 @@
-import Cookies from 'js-cookie';
+const name = 'conduitToken';
 
-const storagePrefix = 'conduit';
+const getCookie = (name: string) => {
+    let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    if (match) return match[2];
+    return;
+}
 
 const storage = {
     getToken: () => {
-        let cookie = Cookies.get(`${storagePrefix}Token`);
+        let cookie = getCookie(name);
         if(!cookie) return null;
-        return JSON.parse(cookie as string);
+        return cookie;
     },
     setToken: (token: string) => {
-        Cookies.set(`${storagePrefix}Token`, JSON.stringify(token), {secure: true})
+        document.cookie = name + `=${token}`
     },
     clearToken: () => {
-        Cookies.remove(`${storagePrefix}Token`, {secure: true})
+        document.cookie = name+'=; Max-Age=-99999999;';
     },
 };
 
