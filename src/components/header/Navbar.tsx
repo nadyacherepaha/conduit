@@ -14,7 +14,9 @@ const Navbar: FC = () => {
   const { user } = useAppSelector(state => state.user)
   const [openBurger, setOpenBurger] = useState<boolean>(false);
 
-  storage.getToken() && dispatch(signInUser());
+  if (Boolean(storage.getToken())) {
+    dispatch(signInUser());
+  }
 
   const onCloseBurger = () => {
     openBurger && setOpenBurger(false);

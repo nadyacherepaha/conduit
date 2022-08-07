@@ -5,8 +5,8 @@ import { useInput } from '../../hooks/input-hook/UseInput';
 import BASE_URL from '../../utils/baseUrl';
 import mainStyle from '../../styles/main.module.scss';
 import { loginPath } from '../../constants/navbar';
-import {writeTokenForAuthUser} from "../../redux/actions/userActions";
-import {useAppDispatch} from "../../hooks/redux";
+import { writeTokenForAuthUser } from "../../redux/actions/userActions";
+import { useAppDispatch } from "../../hooks/redux";
 
 const SignUpPage: FC = () => {
   const usernameText = 'username';
@@ -57,19 +57,25 @@ const SignUpPage: FC = () => {
       });
       const token = result.data.user.token;
 
-      token && useDispatch(writeTokenForAuthUser(token))
+      if (Boolean(token)) {
+        useDispatch(writeTokenForAuthUser(token))
+      }
+
       resetUsername();
       resetEmail();
       resetPassword();
       navigate('/');
     } catch (e: any) {
-      e.response.data.errors.email &&
+      if (Boolean(e.response.data.errors.email)) {
         dispatch({ type: 'email', payload: e.response.data.errors.email[0] });
-      e.response.data.errors.username &&
+      }
+
+      if (Boolean(e.response.data.errors.username)) {
         dispatch({
           type: 'username',
           payload: e.response.data.errors.username[0],
         });
+      }
     }
   };
 
