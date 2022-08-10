@@ -1,12 +1,11 @@
 import React, { FC, useReducer } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
 import { useInput } from '../../hooks/input-hook/UseInput';
-import BASE_URL from '../../utils/baseUrl';
 import mainStyle from '../../styles/main.module.scss';
 import { loginPath } from '../../constants/navbar';
-import { writeTokenForAuthUser } from "../../redux/actions/userActions";
-import { useAppDispatch } from "../../hooks/redux";
+import { writeTokenForAuthUser } from '../../redux/actions/userActions';
+import { useAppDispatch } from '../../hooks/redux';
+import { signUp } from '../../services/postData';
 
 const SignUpPage: FC = () => {
   const usernameText = 'username';
@@ -48,17 +47,11 @@ const SignUpPage: FC = () => {
 
   const handleSubmit = async () => {
     try {
-      const result = await axios.post(`${BASE_URL}/users`, {
-        user: {
-          email: `${email}`,
-          password: `${password}`,
-          username: `${username}`,
-        },
-      });
+      const result = await signUp(username, email, password);
       const token = result.data.user.token;
 
       if (Boolean(token)) {
-        useDispatch(writeTokenForAuthUser(token))
+        useDispatch(writeTokenForAuthUser(token));
       }
 
       resetUsername();

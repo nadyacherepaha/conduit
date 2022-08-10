@@ -1,8 +1,7 @@
 import React, { FC, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { useInput } from '../../hooks/input-hook/UseInput';
-import BASE_URL from '../../utils/baseUrl';
+import { signIn } from '../../services/postData';
 import mainStyle from '../../styles/main.module.scss';
 import { registerPath } from '../../constants/navbar';
 import { useAppDispatch } from "../../hooks/redux";
@@ -28,12 +27,7 @@ const SignInPage: FC = () => {
 
   const handleSubmit = async () => {
     try {
-      const result = await axios.post(`${BASE_URL}/users/login`, {
-        user: {
-          email: `${email}`,
-          password: `${password}`,
-        },
-      });
+      const result = await signIn(email, password)
       const token = result.data.user.token;
 
       if (Boolean(token)) {

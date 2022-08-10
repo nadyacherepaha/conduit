@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {writeTokenForAuthUser} from "../actions/userActions";
+import { writeTokenForAuthUser } from "../actions/userActions";
 
 export interface AuthUserState {
   user: boolean;
