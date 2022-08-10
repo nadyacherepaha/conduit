@@ -47,13 +47,9 @@ const SignUpPage: FC = () => {
 
   const handleSubmit = async () => {
     try {
-      const result = await signUp(username, email, password);
-      const token = result.data.user.token;
+      const token = await signUp(username, email, password);
 
-      if (Boolean(token)) {
-        useDispatch(writeTokenForAuthUser(token));
-      }
-
+      useDispatch(writeTokenForAuthUser(token));
       resetUsername();
       resetEmail();
       resetPassword();

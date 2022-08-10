@@ -5,6 +5,7 @@
     "jsx-a11y/alt-text": "warn",
     "jsx-a11y/aria-role": "warn",
     "newline-before-return": "error",
+    "no-return-await": "error",
     "react/jsx-wrap-multilines": [
       "error", 
       { 
