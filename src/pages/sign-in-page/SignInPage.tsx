@@ -4,7 +4,7 @@ import { useInput } from '../../hooks/input-hook/UseInput';
 import { signIn } from '../../services/postData';
 import mainStyle from '../../styles/main.module.scss';
 import { registerPath } from '../../constants/navbar';
-import { useAppDispatch } from "../../hooks/redux";
+import { useAppDispatch } from '../../hooks/redux';
 import { writeTokenForAuthUser } from '../../redux/actions/userActions';
 
 const SignInPage: FC = () => {
@@ -27,13 +27,9 @@ const SignInPage: FC = () => {
 
   const handleSubmit = async () => {
     try {
-      const result = await signIn(email, password)
-      const token = result.data.user.token;
+      const token = await signIn(email, password);
 
-      if (Boolean(token)) {
-        dispatch(writeTokenForAuthUser(token))
-      }
-
+      dispatch(writeTokenForAuthUser(token));
       resetEmail();
       resetPassword();
       navigate('/');
