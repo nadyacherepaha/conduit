@@ -1,40 +1,40 @@
 import React, { FC, Fragment, useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import FeedItem from './FeedItem';
 import style from './feedList.module.scss';
-import BASE_URL from '../../utils/baseUrl';
 import { Article } from '../../types/article';
 import { useAppSelector } from '../../hooks/redux';
 import getFilteredTags from '../../redux/selectors/filterTagsSelector';
 import ErrorPopUp from '../common/error-pop-up/ErrorPopUp';
+import { getArticles } from '../../services/api';
 
 const FeedList: FC = () => {
   const [articles, setArticles] = useState<Article[]>([]);
-  const [error, setError] = useState<any>();
+  const [limit,] = useState<number>(10);
+  const [offset,] = useState<number>(0);
 
   const { entities, tag } = useAppSelector(getFilteredTags);
 
   const filteredArticles = entities.articles;
 
-  const fetchData = async () => {
-    try {
-      const response = await fetch(`${BASE_URL}/articles`);
-      const result = await response.json();
-      setArticles(result.articles);
-    } catch (e: any) {
-      setError(e);
-      console.error(e);
+  const { data, isError } = useQuery(
+    ['articles', tag, filteredArticles, limit, offset],
+    () => (!tag ? getArticles(limit, offset) : null),
+    {
+      useErrorBoundary: (error: any) => error.response?.status >= 400,
     }
-  };
+  );
 
   useEffect(() => {
-    filteredArticles ? setArticles(entities.articles) : fetchData();
-    !tag && fetchData();
-  }, [filteredArticles, tag]);
+    if (data) {
+      filteredArticles ? setArticles(entities.articles) : setArticles(data?.data?.articles ?? []);
+    }
+  }, [data]);
 
   return (
     <div className={style.feedList}>
-      {error && <ErrorPopUp />}
-      {articles.map(
+      {isError && <ErrorPopUp/>}
+      {articles?.map(
         (
           {
             title,
