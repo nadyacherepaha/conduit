@@ -9,7 +9,8 @@ const Footer = () => {
     <footer className={style.footer}>
       <Link
         className={style.link}
-        to="https://github.com/nadyacherepaha/conduit">
+        to="https://github.com/nadyacherepaha/conduit"
+      >
         <FontAwesomeIcon data-testid="footer-icon" icon={faGithubAlt} />
         Fork on GitHub
       </Link>

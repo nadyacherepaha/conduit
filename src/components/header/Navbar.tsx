@@ -39,7 +39,8 @@ const Navbar: FC = () => {
           className={classNames(
             openBurger ? style.burgerMenuIsOpen : style.burgerMenuIsClose
           )}
-          onClick={() => setOpenBurger(!openBurger)}>
+          onClick={() => setOpenBurger(!openBurger)}
+        >
           <span />
           <span />
           <span />
@@ -48,7 +49,8 @@ const Navbar: FC = () => {
           className={classNames(
             style.list,
             openBurger ? style.openListBurger : style.closeListBurger
-          )}>
+          )}
+        >
           {user ? (
             <>
               {routesForAuthUser.map(({ path, title, icon }) => (
@@ -62,7 +64,8 @@ const Navbar: FC = () => {
                   }}
                   key={path}
                   to={path}
-                  onClick={onCloseBurger}>
+                  onClick={onCloseBurger}
+                >
                   <FontAwesomeIcon icon={icon} />
                   {title}
                 </Link>
@@ -81,7 +84,8 @@ const Navbar: FC = () => {
                   }}
                   key={path}
                   to={path}
-                  onClick={onCloseBurger}>
+                  onClick={onCloseBurger}
+                >
                   {title}
                 </Link>
               ))}

@@ -49,7 +49,8 @@ const PopularTags: FC = () => {
         <button
           key={key}
           className={classNames(style.tagItem, style.bgColor)}
-          onClick={() => setTab(tag)}>
+          onClick={() => setTab(tag)}
+        >
           {tag}
         </button>
       ))}
