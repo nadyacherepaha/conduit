@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithubAlt } from '@fortawesome/free-brands-svg-icons/faGithubAlt';
 import style from './footer.module.scss';
@@ -7,13 +6,15 @@ import style from './footer.module.scss';
 const Footer = () => {
   return (
     <footer className={style.footer}>
-      <Link
+      <a
         className={style.link}
-        to="https://github.com/nadyacherepaha/conduit"
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://github.com/nadyacherepaha/conduit"
       >
         <FontAwesomeIcon data-testid="footer-icon" icon={faGithubAlt} />
         Fork on GitHub
-      </Link>
+      </a>
     </footer>
   );
 };
