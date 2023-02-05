@@ -1,0 +1,11 @@
+# Add files here to ignore them from eslint formatting
+/coverage
+/tmp
+/node_modules
+/nginx
+/.vscode
+/.idea
+/assets/fonts
+package-lock.json
+package.json
+yarn.lock
