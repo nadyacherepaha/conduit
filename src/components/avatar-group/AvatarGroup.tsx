@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 import style from './avatarGroup.module.scss';
 import { Profile } from '../../types/profile';
 
@@ -21,7 +22,7 @@ const AvatarGroup: FC<AvatarGroupProps> = (props) => {
         </Link>
         <br />
         <time data-testid="date" className={style.date}>
-          {createdAt}
+          {moment(createdAt).format('LL')}
         </time>
       </div>
     </>

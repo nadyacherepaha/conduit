@@ -6,7 +6,7 @@
 
 .feedToggle {
   grid-area: feedToggle;
-  padding-bottom: 2.5rem;
+  height: 39px;
   border-bottom: 1px solid $lightGreyColor;
 
   @media (max-width: 768px) {

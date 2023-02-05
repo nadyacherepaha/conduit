@@ -17,7 +17,8 @@ const FilterTabs = () => {
     <div className={style.feedToggle}>
       <button
         className={classNames(style.toggleButton, !tag && style.active)}
-        onClick={onResetFilter}>
+        onClick={onResetFilter}
+      >
         Global Feed
       </button>
       {tag && (
