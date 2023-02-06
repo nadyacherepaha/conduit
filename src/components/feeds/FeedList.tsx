@@ -1,5 +1,7 @@
 import React, { FC, Fragment, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
+import Pagination from '@mui/material/Pagination';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import FeedItem from './FeedItem';
 import style from './feedList.module.scss';
 import { Article } from '../../types/article';
@@ -8,10 +10,28 @@ import getFilteredTags from '../../redux/selectors/filterTagsSelector';
 import ErrorPopUp from '../common/error-pop-up/ErrorPopUp';
 import { getArticles } from '../../services/api';
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      light: '#5cb85b',
+      main: '#1cb11c;',
+      dark: '#357935',
+      contrastText: '#fff',
+    },
+  },
+});
+
 const FeedList: FC = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [limit,] = useState<number>(10);
-  const [offset,] = useState<number>(0);
+  const [offset, setOffset] = useState<number>(0);
+  const [page, setPage] = useState<number>(1);
+  const [pageCount, setPageCount] = useState<number>(0);
+
+  const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+    setOffset(value > 1 ? (value - 1) * 10 : 0);
+  };
 
   const { entities, tag } = useAppSelector(getFilteredTags);
 
@@ -28,6 +48,7 @@ const FeedList: FC = () => {
   useEffect(() => {
     if (data) {
       filteredArticles ? setArticles(entities.articles) : setArticles(data?.data?.articles ?? []);
+      data?.data?.articlesCount ? setPageCount(Math.ceil(data?.data?.articlesCount / limit)) : 0
     }
   }, [data]);
 
@@ -60,6 +81,21 @@ const FeedList: FC = () => {
           </Fragment>
         )
       )}
+      <ThemeProvider theme={theme}>
+        <Pagination
+          sx={{
+            margin: '20px auto',
+            '.MuiPagination-ul': {
+              justifyContent: 'center',
+            }
+          }}
+          count={pageCount}
+          variant="outlined"
+          color='primary'
+          onChange={handleChange}
+          page={page}
+        />
+      </ThemeProvider>
     </div>
   );
 };
