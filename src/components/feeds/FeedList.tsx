@@ -1,6 +1,6 @@
 import React, { FC, Fragment, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import Pagination from '@mui/material/Pagination';
+import { Pagination, Box } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import FeedItem from './FeedItem';
 import style from './feedList.module.scss';
@@ -9,6 +9,7 @@ import { useAppSelector } from '../../hooks/redux';
 import getFilteredTags from '../../redux/selectors/filterTagsSelector';
 import ErrorPopUp from '../common/error-pop-up/ErrorPopUp';
 import { getArticles } from '../../services/api';
+import SkeletonItem from './SkeletonItem';
 
 const theme = createTheme({
   palette: {
@@ -23,7 +24,7 @@ const theme = createTheme({
 
 const FeedList: FC = () => {
   const [articles, setArticles] = useState<Article[]>([]);
-  const [limit,] = useState<number>(10);
+  const [limit] = useState<number>(10);
   const [offset, setOffset] = useState<number>(0);
   const [page, setPage] = useState<number>(1);
   const [pageCount, setPageCount] = useState<number>(0);
@@ -37,48 +38,61 @@ const FeedList: FC = () => {
 
   const filteredArticles = entities.articles;
 
-  const { data, isError } = useQuery(
+  const { data, isError, isLoading, isFetching } = useQuery(
     ['articles', tag, filteredArticles, limit, offset],
     () => (!tag ? getArticles(limit, offset) : null),
     {
       useErrorBoundary: (error: any) => error.response?.status >= 400,
+      keepPreviousData: true,
     }
   );
 
   useEffect(() => {
     if (data) {
-      filteredArticles ? setArticles(entities.articles) : setArticles(data?.data?.articles ?? []);
-      data?.data?.articlesCount ? setPageCount(Math.ceil(data?.data?.articlesCount / limit)) : 0
+      filteredArticles
+        ? setArticles(entities.articles)
+        : setArticles(data?.data?.articles ?? []);
+      data?.data?.articlesCount
+        ? setPageCount(Math.ceil(data?.data?.articlesCount / limit))
+        : 0;
     }
   }, [data]);
 
   return (
     <div className={style.feedList}>
-      {isError && <ErrorPopUp/>}
-      {articles?.map(
-        (
-          {
-            title,
-            author,
-            description,
-            createdAt,
-            tagList,
-            favoritesCount,
-            favorited,
-          },
-          index
-        ) => (
-          <Fragment key={index}>
-            <FeedItem
-              favorited={favorited}
-              favoritesCount={favoritesCount}
-              createdAt={createdAt}
-              author={author}
-              description={description}
-              title={title}
-              tagList={tagList}
-            />
-          </Fragment>
+      {isError && <ErrorPopUp />}
+      {!isLoading || isFetching ? (
+        <Box paddingTop="20px">
+          {[1, 2, 3, 4, 5].map((index) => (
+            <SkeletonItem key={index} />
+          ))}
+        </Box>
+      ) : (
+        articles?.map(
+          (
+            {
+              title,
+              author,
+              description,
+              createdAt,
+              tagList,
+              favoritesCount,
+              favorited,
+            },
+            index
+          ) => (
+            <Fragment key={index}>
+              <FeedItem
+                favorited={favorited}
+                favoritesCount={favoritesCount}
+                createdAt={createdAt}
+                author={author}
+                description={description}
+                title={title}
+                tagList={tagList}
+              />
+            </Fragment>
+          )
         )
       )}
       <ThemeProvider theme={theme}>
@@ -87,11 +101,11 @@ const FeedList: FC = () => {
             margin: '20px auto',
             '.MuiPagination-ul': {
               justifyContent: 'center',
-            }
+            },
           }}
           count={pageCount}
           variant="outlined"
-          color='primary'
+          color="primary"
           onChange={handleChange}
           page={page}
         />
