@@ -61,7 +61,7 @@ const FeedList: FC = () => {
   return (
     <div className={style.feedList}>
       {isError && <ErrorPopUp />}
-      {!isLoading || isFetching ? (
+      {isLoading || isFetching ? (
         <Box paddingTop="20px">
           {[1, 2, 3, 4, 5].map((index) => (
             <SkeletonItem key={index} />
