@@ -4,7 +4,6 @@ import style from './tags.module.scss';
 import BASE_URL from '../../utils/baseUrl';
 import { getData } from '../../services/getData';
 import { useAppDispatch } from '../../hooks/redux';
-import filterTags from '../../redux/actions/filterTagsAction';
 import { addSelectedTag } from '../../redux/reducers/filterTagsReducer';
 import ErrorPopUp from '../common/error-pop-up/ErrorPopUp';
 
@@ -31,7 +30,6 @@ const PopularTags: FC = () => {
     const onFilterTags = async () => {
       try {
         dispatch(addSelectedTag(tab));
-        await dispatch(filterTags(tab));
       } catch (e: any) {
         setError(e);
         console.log(e);

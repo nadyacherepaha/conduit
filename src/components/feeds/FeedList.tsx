@@ -4,7 +4,6 @@ import { Pagination, Box } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import FeedItem from './FeedItem';
 import style from './feedList.module.scss';
-import { Article } from '../../types/article';
 import { useAppSelector } from '../../hooks/redux';
 import getFilteredTags from '../../redux/selectors/filterTagsSelector';
 import ErrorPopUp from '../common/error-pop-up/ErrorPopUp';
@@ -23,7 +22,6 @@ const theme = createTheme({
 });
 
 const FeedList: FC = () => {
-  const [articles, setArticles] = useState<Article[]>([]);
   const [limit] = useState<number>(10);
   const [offset, setOffset] = useState<number>(0);
   const [page, setPage] = useState<number>(1);
@@ -34,13 +32,11 @@ const FeedList: FC = () => {
     setOffset(value > 1 ? (value - 1) * 10 : 0);
   };
 
-  const { entities, tag } = useAppSelector(getFilteredTags);
-
-  const filteredArticles = entities.articles;
+  const { tag } = useAppSelector(getFilteredTags);
 
   const { data, isError, isLoading, isFetching } = useQuery(
-    ['articles', tag, filteredArticles, limit, offset],
-    () => (!tag ? getArticles(limit, offset) : null),
+    ['articles', tag, offset],
+    () => getArticles(limit, offset, tag),
     {
       useErrorBoundary: (error: any) => error.response?.status >= 400,
       keepPreviousData: true,
@@ -48,10 +44,12 @@ const FeedList: FC = () => {
   );
 
   useEffect(() => {
+    setPage(1);
+    setOffset(0);
+  }, [tag]);
+
+  useEffect(() => {
     if (data) {
-      filteredArticles
-        ? setArticles(entities.articles)
-        : setArticles(data?.data?.articles ?? []);
       data?.data?.articlesCount
         ? setPageCount(Math.ceil(data?.data?.articlesCount / limit))
         : 0;
@@ -68,7 +66,7 @@ const FeedList: FC = () => {
           ))}
         </Box>
       ) : (
-        articles?.map(
+        data?.data?.articles?.map(
           (
             {
               title,

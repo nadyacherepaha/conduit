@@ -4,7 +4,8 @@ import { GetArticlesResponse } from '../types/article';
 
 export const getArticles = (
   limit: number,
-  offset: number
+  offset: number,
+  tag?: string,
 ): Promise<GetArticlesResponse> => {
-  return axios.get(`${BASE_URL}/articles?limit=${limit}&offset=${offset}`);
+  return axios.get(`${BASE_URL}/articles?limit=${limit}&offset=${offset}${tag ? `&tag=${tag}` : ''}`);
 };
