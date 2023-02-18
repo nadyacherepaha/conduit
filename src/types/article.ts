@@ -9,12 +9,23 @@ export type GetArticlesResponse = {
 
 export interface Article {
   author: Profile;
+  authorId?: number;
   body?: string;
   createdAt: string;
   description: string;
   favorited: boolean;
+  favoritedBy?: {
+    bio: string | null;
+    demo: boolean;
+    email: string;
+    id: number;
+    image: string | null;
+    password: string;
+    username: string;
+  }[];
   favoritesCount: number;
-  slug?: string;
+  id?: number;
+  slug: string;
   tagList: string[];
   title: string;
   updatedAt?: string;

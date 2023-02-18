@@ -17,6 +17,7 @@ describe('FeedItem component', () => {
     description: '',
     title: '',
     tagList: [],
+    slug: '',
   };
 
   beforeEach(() => {
@@ -29,6 +30,7 @@ describe('FeedItem component', () => {
         description={props.description}
         title={props.title}
         tagList={props.tagList}
+        slug={props.slug}
       />,
       { wrapper: HashRouter }
     );

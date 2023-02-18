@@ -30,17 +30,29 @@
     padding: 0.25rem 0.5rem;
     font-size: 0.875rem;
     border-radius: 0.2rem;
-    color: $lightGreenColor;
     border: 1px solid $lightGreenColor;
-    background-color: transparent;
     transition: .3s all ease;
+    cursor: pointer;
 
-    &:hover,
-    &:active,
-    &:focus {
+    &:hover {
       color: $whiteColor;
       background-color: $lightGreenColor;
     }
+
+    &:focus,
+    &:active {
+      border: 2px solid $lightGreenColor;
+    }
+  }
+
+  .greenButton {
+    color: $whiteColor;
+    background-color: $lightGreenColor;
+  }
+
+  .transparentButton {
+    color: $lightGreenColor;
+    background-color: transparent;
   }
 }
 

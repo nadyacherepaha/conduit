@@ -76,6 +76,7 @@ const FeedList: FC = () => {
               tagList,
               favoritesCount,
               favorited,
+              slug
             },
             index
           ) => (
@@ -88,6 +89,7 @@ const FeedList: FC = () => {
                 description={description}
                 title={title}
                 tagList={tagList}
+                slug={slug}
               />
             </Fragment>
           )
