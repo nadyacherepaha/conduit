@@ -3,18 +3,18 @@ import userReducer from '../reducers/authReducer';
 import filterTagsReducer from '../reducers/filterTagsReducer';
 
 const reducers = {
-  user: userReducer,
-  filterTags: filterTagsReducer,
+    user: userReducer,
+    filterTags: filterTagsReducer,
 };
 
 const rootReducer = combineReducers({
-  ...reducers,
+    ...reducers,
 });
 
 const setupStore = () =>
-  configureStore({
-    reducer: rootReducer,
-  });
+    configureStore({
+        reducer: rootReducer,
+    });
 
 export type RootState = ReturnType<typeof rootReducer>;
 export type AppStore = ReturnType<typeof setupStore>;

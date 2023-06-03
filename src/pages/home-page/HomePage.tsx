@@ -5,17 +5,15 @@ import FeedList from '../../components/feeds/FeedList';
 import PopularTags from '../../components/tags/PopularTags';
 import FilterTabs from '../../components/filter-tabs/FilterTabs';
 
-const HomePage: FC = () => {
-  return (
+const HomePage: FC = () => (
     <>
-      <Banner />
-      <main className={style.feedContainer}>
-        <FilterTabs />
-        <FeedList />
-        <PopularTags />
-      </main>
+        <Banner />
+        <main className={style.feedContainer}>
+            <FilterTabs />
+            <FeedList />
+            <PopularTags />
+        </main>
     </>
-  );
-};
+);
 
 export default HomePage;

@@ -3,23 +3,23 @@ import storage from '../utils/storage';
 import BASE_URL from '../utils/baseUrl';
 
 export const axios = Axios.create({
-  baseURL: BASE_URL,
+    baseURL: BASE_URL,
 });
 
 const authRequestInterceptor = (config: AxiosRequestConfig) => {
-  const token = storage.getToken();
+    const token = storage.getToken();
 
-  if (config.headers === undefined) {
-    config.headers = {};
-  }
+    if (config.headers === undefined) {
+        config.headers = {};
+    }
 
-  if (token) {
-    config.headers.authorization = `Bearer ${token}`;
-  }
+    if (token) {
+        config.headers.authorization = `Bearer ${token}`;
+    }
 
-  config.headers.Accept = 'application/json';
+    config.headers.Accept = 'application/json';
 
-  return config;
+    return config;
 };
 
 axios.interceptors.request.use(authRequestInterceptor);
