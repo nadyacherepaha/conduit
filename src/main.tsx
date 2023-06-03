@@ -4,9 +4,9 @@ import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
 import setupStore from './redux/store/store';
-import Header from './components/header/Header';
-import Footer from './components/footer/Footer';
-import HomePage from './pages/home-page/HomePage';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Home from 'pages/Home';
 import {
     homePath,
     settingsPath,
@@ -16,8 +16,8 @@ import {
     profilePath,
 } from './constants/navbar';
 import './styles/main.module.scss';
-import SignUpPage from './pages/sign-up-page/SignUpPage';
-import SignInPage from './pages/sign-in-page/SignInPage';
+import SignUp from 'pages/SignUp';
+import SignIn from 'pages/SignIn';
 
 export const queryClient = new QueryClient({
     defaultOptions: {
@@ -39,15 +39,12 @@ const App: FC = () => {
                     <Router>
                         <Header />
                         <Routes>
-                            <Route path={homePath} element={<HomePage />} />
-                            <Route path={loginPath} element={<SignInPage />} />
-                            <Route
-                                path={registerPath}
-                                element={<SignUpPage />}
-                            />
-                            <Route path={editorPath} element={<HomePage />} />
-                            <Route path={profilePath} element={<HomePage />} />
-                            <Route path={settingsPath} element={<HomePage />} />
+                            <Route path={homePath} element={<Home />} />
+                            <Route path={loginPath} element={<SignIn />} />
+                            <Route path={registerPath} element={<SignUp />} />
+                            <Route path={editorPath} element={<Home />} />
+                            <Route path={profilePath} element={<Home />} />
+                            <Route path={settingsPath} element={<Home />} />
                         </Routes>
                         <Footer />
                     </Router>

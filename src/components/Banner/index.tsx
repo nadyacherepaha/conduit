@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './banner.module.scss';
 
-function Banner() {
+const Banner = () => {
     return (
         <section className={style.banner}>
             <h1 className={style.title}>Conduit</h1>
@@ -10,6 +10,6 @@ function Banner() {
             </p>
         </section>
     );
-}
+};
 
 export default Banner;

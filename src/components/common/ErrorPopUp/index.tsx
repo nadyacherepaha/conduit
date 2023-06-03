@@ -1,7 +1,7 @@
 import React from 'react';
 import mainStyle from '../../../styles/main.module.scss';
 
-function ErrorPopUp() {
+const ErrorPopUp = () => {
     return (
         <>
             <span>
@@ -12,6 +12,6 @@ function ErrorPopUp() {
             </span>
         </>
     );
-}
+};
 
 export default ErrorPopUp;

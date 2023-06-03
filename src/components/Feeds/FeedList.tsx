@@ -6,7 +6,7 @@ import FeedItem from './FeedItem';
 import style from './feedList.module.scss';
 import { useAppSelector } from '../../hooks/redux';
 import getFilteredTags from '../../redux/selectors/filterTagsSelector';
-import ErrorPopUp from '../common/error-pop-up/ErrorPopUp';
+import ErrorPopUp from '../common/ErrorPopUp';
 import { getArticles } from '../../services/api';
 import SkeletonItem from './SkeletonItem';
 

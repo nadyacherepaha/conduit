@@ -5,7 +5,7 @@ import BASE_URL from '../../utils/baseUrl';
 import { getData } from '../../services/getData';
 import { useAppDispatch } from '../../hooks/redux';
 import { addSelectedTag } from '../../redux/reducers/filterTagsReducer';
-import ErrorPopUp from '../common/error-pop-up/ErrorPopUp';
+import ErrorPopUp from '../common/ErrorPopUp';
 
 const PopularTags: FC = () => {
     const [tags, setTags] = useState<string[]>([]);

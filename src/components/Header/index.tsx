@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
 import style from './header.module.scss';
 
-function Header() {
+const Header = () => {
     return (
         <header className={style.header}>
             <Link className={style.logo} to="/">
@@ -18,6 +18,6 @@ function Header() {
             <Navbar />
         </header>
     );
-}
+};
 
 export default Header;

@@ -6,9 +6,9 @@ import classNames from 'classnames';
 import { loginPath } from '../../constants/navbar';
 import { useAppSelector } from '../../hooks/redux';
 import { postFavorite, deleteFavorite } from '../../services/api';
-import AvatarGroup from '../avatar-group/AvatarGroup';
+import AvatarGroup from '../AvatarGroup';
 import style from './feedItem.module.scss';
-import tagStyle from '../tags/tags.module.scss';
+import tagStyle from '../Tags/tags.module.scss';
 import { Article } from '../../types/article';
 
 export interface FeedItemProps extends Article {}

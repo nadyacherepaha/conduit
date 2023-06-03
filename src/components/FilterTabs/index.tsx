@@ -1,3 +1,5 @@
+import { faXmark } from '@fortawesome/free-solid-svg-icons/faXmark';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import classNames from 'classnames';
 import style from './filterTabs.module.scss';
@@ -5,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import getFilteredTags from '../../redux/selectors/filterTagsSelector';
 import { deleteSelectedTag } from '../../redux/reducers/filterTagsReducer';
 
-function FilterTabs() {
+const FilterTabs = () => {
     const dispatch = useAppDispatch();
     const { tag } = useAppSelector(getFilteredTags);
 
@@ -26,10 +28,15 @@ function FilterTabs() {
                     className={classNames(style.toggleButton, style.active)}
                 >
                     {tag}
+                    <FontAwesomeIcon
+                        icon={faXmark}
+                        onClick={onResetFilter}
+                        className={style.icon ?? ''}
+                    />
                 </button>
             )}
         </div>
     );
-}
+};
 
 export default FilterTabs;

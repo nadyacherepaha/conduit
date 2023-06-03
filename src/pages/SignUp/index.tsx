@@ -7,7 +7,7 @@ import { writeTokenForAuthUser } from '../../redux/actions/userActions';
 import { useAppDispatch } from '../../hooks/redux';
 import { signUp } from '../../services/postData';
 
-const SignUpPage: FC = () => {
+const SignUp: FC = () => {
     const usernameText = 'username';
     const emailText = 'email';
     const passwordText = 'password';
@@ -121,4 +121,4 @@ const SignUpPage: FC = () => {
     );
 };
 
-export default SignUpPage;
+export default SignUp;

@@ -7,7 +7,7 @@ import { registerPath } from '../../constants/navbar';
 import { useAppDispatch } from '../../hooks/redux';
 import { writeTokenForAuthUser } from '../../redux/actions/userActions';
 
-const SignInPage: FC = () => {
+const SignIn: FC = () => {
     const emailText = 'email';
     const passwordText = 'password';
     const enterText = 'Enter your ';
@@ -77,4 +77,4 @@ const SignInPage: FC = () => {
     );
 };
 
-export default SignInPage;
+export default SignIn;

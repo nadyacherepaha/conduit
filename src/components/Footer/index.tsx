@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithubAlt } from '@fortawesome/free-brands-svg-icons/faGithubAlt';
 import style from './footer.module.scss';
 
-function Footer() {
+const Footer = () => {
     return (
         <footer className={style.footer}>
             <a
@@ -17,6 +17,6 @@ function Footer() {
             </a>
         </footer>
     );
-}
+};
 
 export default Footer;
