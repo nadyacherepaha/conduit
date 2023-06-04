@@ -1,4 +1,4 @@
-import Axios, { AxiosRequestConfig } from 'axios';
+import Axios, { AxiosRequestConfig, AxiosError } from 'axios';
 import storage from '../utils/storage';
 import BASE_URL from '../utils/baseUrl';
 
@@ -23,3 +23,11 @@ const authRequestInterceptor = (config: AxiosRequestConfig) => {
 };
 
 axios.interceptors.request.use(authRequestInterceptor);
+axios.interceptors.response.use(
+    (response) => {
+        return response?.data ?? response;
+    },
+    (error: AxiosError) => {
+        return Promise.reject<AxiosError>(error.response?.data ?? error);
+    }
+);

@@ -9,7 +9,6 @@ import { postFavorite, deleteFavorite } from '../../services/api';
 import AvatarGroup from '../AvatarGroup';
 import style from './feedItem.module.scss';
 import tagStyle from '../Tags/tags.module.scss';
-import { Article } from '../../types/article';
 
 export interface FeedItemProps extends Article {}
 
@@ -40,15 +39,15 @@ const FeedItem: FC<FeedItemProps> = (props) => {
                 const res = await deleteFavorite(slug);
 
                 if (res) {
-                    setFavorite(res.data?.article?.favorited);
-                    setFavCount(res.data?.article?.favoritesCount);
+                    setFavorite(res?.article?.favorited);
+                    setFavCount(res?.article?.favoritesCount);
                 }
             } else {
                 const res = await postFavorite(slug);
 
                 if (res) {
-                    setFavorite(res.data?.article?.favorited);
-                    setFavCount(res.data?.article?.favoritesCount);
+                    setFavorite(res?.article?.favorited);
+                    setFavCount(res?.article?.favoritesCount);
                 }
             }
         } else {

@@ -53,8 +53,8 @@ const FeedList: FC = () => {
 
     useEffect(() => {
         if (data) {
-            data?.data?.articlesCount
-                ? setPageCount(Math.ceil(data?.data?.articlesCount / limit))
+            data?.articlesCount
+                ? setPageCount(Math.ceil(data?.articlesCount / limit))
                 : 0;
         }
     }, [data]);
@@ -69,7 +69,7 @@ const FeedList: FC = () => {
                     ))}
                 </Box>
             ) : (
-                data?.data?.articles?.map(
+                data?.articles?.map(
                     (
                         {
                             title,
@@ -98,21 +98,23 @@ const FeedList: FC = () => {
                     )
                 )
             )}
-            <ThemeProvider theme={theme}>
-                <Pagination
-                    sx={{
-                        margin: '20px auto',
-                        '.MuiPagination-ul': {
-                            justifyContent: 'center',
-                        },
-                    }}
-                    count={pageCount}
-                    variant="outlined"
-                    color="primary"
-                    onChange={handleChange}
-                    page={page}
-                />
-            </ThemeProvider>
+            {data && (
+                <ThemeProvider theme={theme}>
+                    <Pagination
+                        sx={{
+                            margin: '20px auto',
+                            '.MuiPagination-ul': {
+                                justifyContent: 'center',
+                            },
+                        }}
+                        count={pageCount}
+                        variant="outlined"
+                        color="primary"
+                        onChange={handleChange}
+                        page={page}
+                    />
+                </ThemeProvider>
+            )}
         </div>
     );
 };

@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import style from './avatarGroup.module.scss';
-import { Profile } from '../../types/profile';
 
 export interface AvatarGroupProps extends Profile {
     createdAt: string;
